@@ -1,3 +1,6 @@
+const selectCity = document.getElementById('city-select');
+const bouttonSend = document.getElementById('sendCodePost');
+
 document.getElementById('sendCodePost').addEventListener('click', () => {
     const codePost = document.getElementById('codePost').value;
     searchCity(codePost);
@@ -5,18 +8,19 @@ document.getElementById('sendCodePost').addEventListener('click', () => {
 
 function searchCity(codePostale) {
     fetch('https://geo.api.gouv.fr/communes?codePostal=' + codePostale)
-        .then(response => {
-            console.log(response.json());
-        })
-        .then(data => {
-            console.log(data);
+        .then(response => response.json())
 
-            if(data && data.length === 1){
-                const commune = data[0];
-                document.getElementById('showCityName').textContent = commune;
+        .then(data => {
+            if(data){
+                data.forEach(city => {
+                    const option = document.createElement('option');
+                    option.value = `${city.code}`
+                    option.textContent = `${city.nom}`
+                    selectCity.appendChild(option);
+                });
             }
         })
         .catch(err => {
             console.error('Erreur lors de la requête' + err);
-        })
+    })    
 }
