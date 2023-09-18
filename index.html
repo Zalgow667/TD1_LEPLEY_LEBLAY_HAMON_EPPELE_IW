@@ -10,14 +10,19 @@
     <title>InstantWeather - JS Project</title>
 </head>
 <body>
-    <div class="search-city-containers">
-        <labal>Recherche ta ville via Code Postale :</labal>
-        <input id="codePost" type="number" value="14123">
-        <button id="sendCodePost">Envoyer</button>
+    <div id="search-city-containers">
+        <label id="text-search-city">Recherche via Code Postale : </label>
+        <input id="codePost" type="text" placeholder="Entrez un code postale...">
+        <select id="city-select" name="city"></select>
+        <button id="search-weather-report">Recherche la météo pour cette ville</button>
     </div>
-    <select name="city" id="city-select">
-        <option value="">Choisissez une ville</option>
-    </select>
+
+    <div id="display-weather-report-containers">
+        <p>Température max : <span id="tmax"></span></p>
+        <p>Température min : <span id="tmin"></span></p>
+        <p>Probabilité de pluie : <span id="probarain"></span></p>
+        <p>Soleil ajd : <span id="suntoday"></span></p>
+    </div>
     <script src="./scripts/app.js"></script>
 </body>
 </html>
