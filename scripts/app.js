@@ -10,12 +10,13 @@ document.getElementById('codePost').addEventListener('input', () => {
     selectCity.length = 0;
     selectCity.style.visibility = "hidden";
     SearchWeatherReport.style.visibility = "hidden";
+    document.getElementById('tmax').textContent = "";
+    document.getElementById('tmin').textContent = "";
+    document.getElementById('probarain').textContent = "";
+    document.getElementById('suntoday').textContent = "";
 });
 
 SearchWeatherReport.addEventListener('click', () => {
-    /*document.getElementById('search-city-containers').style.visibility = "hidden";
-    selectCity.style.visibility = "hidden";
-    SearchWeatherReport.style.visibility = "hidden";*/
     searchWeatherReport();
 });
 
