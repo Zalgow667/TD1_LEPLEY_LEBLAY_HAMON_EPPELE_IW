@@ -1,0 +1,12 @@
+#codePost {
+    border-radius: 5px;
+    font-size: 1em;
+    border: none;
+    background-color: rgba(128, 128, 128, 0.349);
+    padding: 4px;
+    outline: none;
+    padding-right: 30px;
+    background-image: '\f002';
+    background-repeat: no-repeat;
+    background-position: right center;
+}
