@@ -1,7 +1,10 @@
 document.getElementById('codePost').addEventListener('input', () => {
     const codePost = document.getElementById('codePost').value;
     searchCity(codePost);
-    selectCity.length = 0;
+
+    if(codePost.length < 5 && document.querySelector('ul')){
+       document.querySelector('ul').remove();
+    }
 });
 
 function searchCity() {
@@ -17,7 +20,9 @@ function searchCity() {
                 resultDiv.innerHTML = "";
 
                 if (data.length > 0) {
-                    var ul = document.createElement('ul');
+
+                    let ul = document.createElement('ul');
+                    ul.classList.add('resultList');
 
                     data.forEach(city => {
                         const li = document.createElement('li');
