@@ -1,27 +1,46 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="shortcut icon" type="image/png" src="./images/logo.png">
+    <script src="https://kit.fontawesome.com/7cc3538ab6.js" crossorigin="anonymous"></script>
 
     <title>InstantWeather - JS Project</title>
 </head>
+
 <body>
-    <div id="search-city-containers">
+
+
+    <div id="search-city-containers" class="search">
         <label id="text-search-city">Recherche via Code Postal : </label>
+    <div>
+        <input id="codePost" type="text" placeholder="Recherche via code postale...">
+    </div>
+        <select id="city-select" name="city"></select>
+        <button id="search-weather-report">Recherche la météo pour cette ville</button>
         <input id="codePost" type="text" placeholder="Entrez un code postal...">
         <div id="result"></div>
     </div>
 
-    <div id="display-weather-report-containers">
-        <p class="text-display-info">Température max : <span id="tmax"></span></p>
-        <p class="text-display-info">Température min : <span id="tmin"></span></p>
-        <p class="text-display-info">Probabilité de pluie : <span id="probarain"></span></p>
-        <p class="text-display-info">Soleil ajd : <span id="suntoday"></span></p>
+    <div class="display">
+        <div class="container">
+            <em class="fa-regular fa-sun"></em>
+        </div>
+            <div class="container-weather"></div>
+                <div id="display-weather-report-containers" class="display-weather-min-max">
+                    <p class="text-display-info"><i class="fa-solid fa-temperature-arrow-up"></i><span id="tmax"></span></p>
+                    <p class="text-display-info"><i class="fa-solid fa-temperature-arrow-down"></i><span id="tmin"></span></p>
+                </div>
+                <div class="display-weather-rain-sun">
+                    <p class="text-display-info"><i class="fa-solid fa-cloud-rain"></i><span id="probarain"></span></p>
+                    <p class="text-display-info"><i class="fa-regular fa-sun"></i><span id="suntoday"></span></p>
+                </div>
+            </div>
     </div>
     <script src="./scripts/app.js"></script>
 </body>
+
 </html>
