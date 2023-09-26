@@ -7,9 +7,13 @@ document.getElementById('codePost').addEventListener('input', () => {
     }
 });
 
+document.getElementById('codePost').addEventListener('click', () => {
+    searchCity(document.getElementById('codePost').value);
+})
+
 function searchCity() {
-    var codePostalInput = document.getElementById("codePost");
-    var codePostal = codePostalInput.value;
+    let codePostalInput = document.getElementById("codePost");
+    let codePostal = codePostalInput.value;
 
     if (/^\d{5}$/.test(codePostal)) {
         fetch('https://geo.api.gouv.fr/communes?codePostal=' + codePostal)
@@ -42,6 +46,7 @@ function searchCity() {
                                     document.getElementById('probarain').textContent = `${data.forecast.probarain}%`;
                                     document.getElementById('suntoday').textContent = `${data.forecast.sun_hours}h`;
                                 });
+                                document.querySelector('ul').remove();
                         };
 
                         ul.appendChild(li);
