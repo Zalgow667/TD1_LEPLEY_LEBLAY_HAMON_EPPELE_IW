@@ -20,17 +20,21 @@
         <select id="city-select" name="city"></select>
         <button id="search-weather-report">Recherche la météo pour cette ville</button>
     </div>
-    
+
     <div class="display">
         <div class="container">
             <em class="fa-regular fa-sun"></em>
         </div>
-        <div id="display-weather-report-containers">
-            <p class="text-display-info">Température max : <span id="tmax"></span></p>
-            <p class="text-display-info">Température min : <span id="tmin"></span></p>
-            <p class="text-display-info">Probabilité de pluie : <span id="probarain"></span></p>
-            <p class="text-display-info">Soleil ajd : <span id="suntoday"></span></p>
-        </div>
+            <div class="container-weather"></div>
+                <div id="display-weather-report-containers" class="display-weather-min-max">
+                    <p class="text-display-info"><i class="fa-solid fa-temperature-arrow-up"></i><span id="tmax"></span></p>
+                    <p class="text-display-info"><i class="fa-solid fa-temperature-arrow-down"></i><span id="tmin"></span></p>
+                </div>
+                <div class="display-weather-rain-sun">
+                    <p class="text-display-info"><i class="fa-solid fa-cloud-rain"></i><span id="probarain"></span></p>
+                    <p class="text-display-info"><i class="fa-regular fa-sun"></i><span id="suntoday"></span></p>
+                </div>
+            </div>
     </div>
     <script src="./scripts/app.js"></script>
 </body>
