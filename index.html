@@ -1,46 +1,38 @@
 <!DOCTYPE html>
-<html lang="fr">
-
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
-    <link rel="shortcut icon" type="image/png" src="./images/logo.png">
-    <script src="https://kit.fontawesome.com/7cc3538ab6.js" crossorigin="anonymous"></script>
-
-    <title>InstantWeather - JS Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instant Weather | JavaScript Project</title>
 </head>
-
 <body>
-
-
-    <div id="search-city-containers" class="search">
-        <label id="text-search-city">Recherche via Code Postal : </label>
-    <div>
-        <input id="codePost" type="text" placeholder="Recherche via code postale...">
-    </div>
-        <select id="city-select" name="city"></select>
-        <button id="search-weather-report">Recherche la météo pour cette ville</button>
-        <input id="codePost" type="text" placeholder="Entrez un code postal...">
-        <div id="result"></div>
-    </div>
-
-    <div class="display">
-        <div class="container">
-            <em class="fa-regular fa-sun"></em>
+    <h1>Weather Dashbord</h1>
+    <div class="container">
+        <div class="weather-input">
+            <h3>Enter a City Name</h3>
+            <input id="zip-code-input" type="text" placeholder="Entrer un code postale">
+            <div id="result"></div>
         </div>
-            <div class="container-weather"></div>
-                <div id="display-weather-report-containers" class="display-weather-min-max">
-                    <p class="text-display-info"><i class="fa-solid fa-temperature-arrow-up"></i><span id="tmax"></span></p>
-                    <p class="text-display-info"><i class="fa-solid fa-temperature-arrow-down"></i><span id="tmin"></span></p>
+        <div class="weather-data">
+            <div class="current-weather">
+                <div class="details">
+                    <h2><span id="city-location">__</span><span id="actual-date"></span></h2>
+                    <h4>Temperature max: <span id="city-temperature-max">__</span>°C</h4>
+                    <h4>Temperature min: <span id="city-temperature-min">__</span>°C</h4>
+                    <h4>Rain probability: <span id="city-rain-probability">__</span>%</h4>
+                    <h4>Sun time: <span id="city-sun-time">__</span> hours</h4>
                 </div>
-                <div class="display-weather-rain-sun">
-                    <p class="text-display-info"><i class="fa-solid fa-cloud-rain"></i><span id="probarain"></span></p>
-                    <p class="text-display-info"><i class="fa-regular fa-sun"></i><span id="suntoday"></span></p>
+                <div class="icon">
+                    <img src="https://openweathermap.org/img/wn/10d@4x.png" alt="weather-icon">
+                    <h4>Moderate rain</h4>
                 </div>
             </div>
+        </div>
     </div>
+    <footer>
+        <p>Crée par <a href="https://github.com/Zalgow667/TD1_LEPLEY_LEBLAY_HAMON_EPPELE_IW/tree/v1" target="_blank" id="mon_github">Squid Game</a> - 2023</p>
+    </footer>   
     <script src="./scripts/app.js"></script>
 </body>
-
 </html>

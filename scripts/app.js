@@ -1,18 +1,21 @@
-document.getElementById('codePost').addEventListener('input', () => {
-    const codePost = document.getElementById('codePost').value;
-    searchCity(codePost);
+document.getElementById('zip-code-input').addEventListener('input', () => {
+    const codePost = document.getElementById('zip-code-input').value;
+    
+    if(codePost.length === 5){
+        searchCity();
+    }
 
     if(codePost.length < 5 && document.querySelector('ul')){
        document.querySelector('ul').remove();
-    }
+    }   
 });
 
-document.getElementById('codePost').addEventListener('click', () => {
-    searchCity(document.getElementById('codePost').value);
-})
+document.getElementById('zip-code-input').addEventListener('click', () => {
+    document.getElementById('result').style.visibility = 'visible';
+});
 
 function searchCity() {
-    let codePostalInput = document.getElementById("codePost");
+    let codePostalInput = document.getElementById('zip-code-input');
     let codePostal = codePostalInput.value;
 
     if (/^\d{5}$/.test(codePostal)) {
@@ -39,16 +42,16 @@ function searchCity() {
                         
                             fetch('https://api.meteo-concept.com/api/forecast/daily/0?token=03a1b58ee7ed8629a6c05e0cc9cd2ed3e70a682b5e7167a577c6cd3de1b70e9b&insee=' + inseeCode)
                                 .then(response => response.json())
-                        
-                                .then(data => {
-                                    document.getElementById('tmax').textContent = `${data.forecast.tmax}°C`;
-                                    document.getElementById('tmin').textContent = `${data.forecast.tmin}°C`;
-                                    document.getElementById('probarain').textContent = `${data.forecast.probarain}%`;
-                                    document.getElementById('suntoday').textContent = `${data.forecast.sun_hours}h`;
-                                });
-                                document.querySelector('ul').remove();
-                        };
 
+                                .then(data => {
+                                    document.getElementById('city-location').textContent = `${data.city.name}`;
+                                    document.getElementById('city-temperature-max').textContent = `${data.forecast.tmax}`;
+                                    document.getElementById('city-temperature-min').textContent = `${data.forecast.tmin}`;
+                                    document.getElementById('city-rain-probability').textContent = `${data.forecast.probarain}`;
+                                    document.getElementById('city-sun-time').textContent = `${data.forecast.sun_hours}`;
+                                    resultDiv.style.visibility = "hidden";
+                                });
+                        };
                         ul.appendChild(li);
                     });
                     resultDiv.appendChild(ul);
@@ -65,4 +68,12 @@ function searchCity() {
     }
 }
 
+let today = new Date();
+let months = today.getMonth() + 1;
+
+if(months < 10){
+    months = '0' + months;
+}
+
+document.getElementById('actual-date').textContent = ' (' + today.getDate() + '/' + months + '/' + today.getFullYear() + ')';
 
