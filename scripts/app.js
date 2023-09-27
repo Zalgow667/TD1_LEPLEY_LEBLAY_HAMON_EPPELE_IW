@@ -1,3 +1,6 @@
+import weatherMapping from './weather-code-map.js';
+import weatherImage from './weather-image-management.js'
+
 document.getElementById('zip-code-input').addEventListener('input', () => {
     const codePost = document.getElementById('zip-code-input').value;
     
@@ -49,7 +52,11 @@ function searchCity() {
                                     document.getElementById('city-temperature-min').textContent = `${data.forecast.tmin}`;
                                     document.getElementById('city-rain-probability').textContent = `${data.forecast.probarain}`;
                                     document.getElementById('city-sun-time').textContent = `${data.forecast.sun_hours}`;
-                                    document.getElementById('weather-info-text').textContent = ``
+
+                                    let weatherCode = `${data.forecast.weather}`
+                                    document.getElementById('weather-info-text').textContent = weatherMapping[weatherCode];
+                                    weatherImage.imageSelection(weatherCode);
+                                    
                                     resultDiv.style.visibility = "hidden";
                                 });
                         };
