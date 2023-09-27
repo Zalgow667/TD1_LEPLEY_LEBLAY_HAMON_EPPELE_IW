@@ -1,5 +1,4 @@
 import weatherMapping from './weather-code-map.js';
-import weatherImage from './weather-image-management.js'
 
 document.getElementById('zip-code-input').addEventListener('input', () => {
     const codePost = document.getElementById('zip-code-input').value;
@@ -25,9 +24,9 @@ function searchCity() {
         fetch('https://geo.api.gouv.fr/communes?codePostal=' + codePostal)
             .then(response => response.json())
             .then(data => {
-                let resultDiv = document.getElementById("result");
+                let resultDiv = document.getElementById('result');
 
-                resultDiv.innerHTML = "";
+                resultDiv.innerHTML = '';
 
                 if (data.length > 0) {
 
@@ -52,18 +51,17 @@ function searchCity() {
                                     document.getElementById('city-temperature-min').textContent = `${data.forecast.tmin}`;
                                     document.getElementById('city-rain-probability').textContent = `${data.forecast.probarain}`;
                                     document.getElementById('city-sun-time').textContent = `${data.forecast.sun_hours}`;
-
+                                    resultDiv.style.visibility = 'hidden';
+                                    
                                     let weatherCode = `${data.forecast.weather}`
                                     document.getElementById('weather-info-text').textContent = weatherMapping[weatherCode];
                                     weatherImage.imageSelection(weatherCode);
-                                    
-                                    resultDiv.style.visibility = "hidden";
                                 });
                         };
                         ul.appendChild(li);
                     });
                     resultDiv.appendChild(ul);
-                    resultDiv.style.visibility = "visible";
+                    resultDiv.style.visibility = 'visible';
                 } else {
                     resultDiv.textContent = 'Aucune ville trouvée pour ce code postal.';
                 }
