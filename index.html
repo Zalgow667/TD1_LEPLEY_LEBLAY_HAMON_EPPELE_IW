@@ -17,7 +17,7 @@
         <div class="weather-data">
             <div class="current-weather">
                 <div class="details">
-                    <h2><span id="city-location">__</span><span id="actual-date"></span></h2>
+                    <h2><span id="city-location">__</span> - <span id="actual-date"></span></h2>
                     <h4>Temperature max: <span id="city-temperature-max">__</span>°C</h4>
                     <h4>Temperature min: <span id="city-temperature-min">__</span>°C</h4>
                     <h4>Rain probability: <span id="city-rain-probability">__</span>%</h4>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="icon">
                     <img src="https://openweathermap.org/img/wn/10d@4x.png" alt="weather-icon">
-                    <h4>Moderate rain</h4>
+                    <h4 id="weather-info-text"></h4>
                 </div>
             </div>
         </div>
@@ -33,6 +33,6 @@
     <footer>
         <p>Crée par <a href="https://github.com/Zalgow667/TD1_LEPLEY_LEBLAY_HAMON_EPPELE_IW/tree/v1" target="_blank" id="mon_github">Squid Game</a> - 2023</p>
     </footer>   
-    <script src="./scripts/app.js"></script>
+    <script type="module" src="./scripts/app.js"></script>
 </body>
 </html>

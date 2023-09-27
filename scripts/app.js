@@ -49,6 +49,7 @@ function searchCity() {
                                     document.getElementById('city-temperature-min').textContent = `${data.forecast.tmin}`;
                                     document.getElementById('city-rain-probability').textContent = `${data.forecast.probarain}`;
                                     document.getElementById('city-sun-time').textContent = `${data.forecast.sun_hours}`;
+                                    document.getElementById('weather-info-text').textContent = ``
                                     resultDiv.style.visibility = "hidden";
                                 });
                         };

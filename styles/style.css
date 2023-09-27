@@ -86,30 +86,6 @@ h1 {
     text-transform: capitalize;
 }
 
-.days-forecast h2 {
-    font-size: 1.5rem;
-    padding: 20px 0;
-}
-
-.weather-cards {
-    display: flex;
-    gap: 20px;
-}
-
-.weather-cards .card {
-    color: #fff;
-    list-style: none;
-    padding: 18px 16px;
-    border-radius: 5px;
-    width: calc(100%/5);
-    background-color: #6C757D;
-}
-
-.weather-cards .card img {
-    max-width: 70px;
-    margin: 5px 0 -12px 0;
-}
-
 #result {
     max-height: 184px;
     overflow-y: auto;
