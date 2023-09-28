@@ -7,9 +7,9 @@ document.getElementById('zip-code-input').addEventListener('input', () => {
         searchCity();
     }
 
-    if(codePost.length < 5 && document.querySelector('ul')){
-       document.querySelector('ul').remove();
-    }   
+    if(codePost.length && document.getElementById('resultList')){
+        document.getElementById('resultList').remove();
+    }
 });
 
 document.getElementById('zip-code-input').addEventListener('click', () => {
@@ -82,4 +82,5 @@ if(months < 10){
 }
 
 document.getElementById('actual-date').textContent = ' (' + today.getDate() + '/' + months + '/' + today.getFullYear() + ')';
+document.getElementById('actual-date2').textContent = ' (' + (today.getDate()+1) + '/' + months + '/' + today.getFullYear() + ')';
 
