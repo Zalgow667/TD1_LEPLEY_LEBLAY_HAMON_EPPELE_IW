@@ -1,4 +1,5 @@
 import weatherMapping from './weather-code-map.js';
+import createWeatherCard from './create-weather-card.js';
 
 document.getElementById('zip-code-input').addEventListener('input', () => {
     const codePost = document.getElementById('zip-code-input').value;
@@ -82,5 +83,16 @@ if(months < 10){
 }
 
 document.getElementById('actual-date').textContent = ' (' + today.getDate() + '/' + months + '/' + today.getFullYear() + ')';
-document.getElementById('actual-date2').textContent = ' (' + (today.getDate()+1) + '/' + months + '/' + today.getFullYear() + ')';
 
+/* WEATHER CREATE CARD */
+
+document.getElementById('number-of-weather-card').addEventListener('input', () =>  {
+    let numberOfCard = document.getElementById('number-of-weather-card').value;
+
+    if(numberOfCard > 7){
+        document.getElementById('number-of-weather-card').value = '';
+        alert('You must use a number under 7 to display weather-card');
+    } else {
+        createWeatherCard(numberOfCard);
+    }
+});
