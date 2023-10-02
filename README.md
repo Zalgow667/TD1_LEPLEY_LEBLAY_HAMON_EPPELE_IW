@@ -15,4 +15,3 @@ Instant Weather is a simple weather forecasting application that provides users 
 Follow these steps to get started with Instant Weather:
 
 1. Clone this repository to your local machine.
-2. 
