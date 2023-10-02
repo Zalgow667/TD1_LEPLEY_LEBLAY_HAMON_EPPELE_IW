@@ -19,7 +19,7 @@ function createWeatherCard(numberOfCard){
 
         let span = document.createElement('span');
         span.setAttribute('id', 'actual-date2');
-        span.textContent = '(02/10/2023)'
+        span.textContent = '(' + i + '/10/2023)'
 
         li.appendChild(h3);
         h3.appendChild(span);
