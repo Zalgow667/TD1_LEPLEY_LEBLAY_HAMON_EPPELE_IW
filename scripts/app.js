@@ -43,7 +43,7 @@ function searchCity() {
                         li.onclick = function(event){
                             const inseeCode = event.target.id;
                         
-                            fetch('https://api.meteo-concept.com/api/forecast/daily/0?token=03a1b58ee7ed8629a6c05e0cc9cd2ed3e70a682b5e7167a577c6cd3de1b70e9b&insee=' + inseeCode)
+                            fetch('https://api.meteo-concept.com/api/forecast/daily/0?token=ecee532ddce7b5e3f19b9a1b25826f40092a21be0a86bc6bc25725374bb1fef2&insee=' + inseeCode)
                                 .then(response => response.json())
 
                                 .then(data => {
@@ -88,6 +88,10 @@ document.getElementById('actual-date').textContent = ' (' + today.getDate() + '/
 
 document.getElementById('number-of-weather-card').addEventListener('input', () =>  {
     let numberOfCard = document.getElementById('number-of-weather-card').value;
+
+    if(numberOfCard === null){
+        document.getElementById('number-day-display').textContent = 0;
+    }
 
     if(numberOfCard > 7){
         document.getElementById('number-of-weather-card').value = '';
