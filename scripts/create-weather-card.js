@@ -1,8 +1,8 @@
 class WeatherCard {
-    constructor(temperature, probarain, humidity) {
+    constructor(temperature, probarain, suntime) {
         this.temperature = temperature;
         this.probarain = probarain;
-        this.humidity = humidity;
+        this.suntime = suntime;
     }
 
     render() {
@@ -17,19 +17,19 @@ class WeatherCard {
         const h4_probarain = document.createElement('h4');
         h4_probarain.textContent = `Rain Probability: ${this.probarain}%`;
 
-        const h4_humidity = document.createElement('h4');
-        h4_humidity.textContent = `Humidity: ${this.humidity}%`;
+        const h4_suntime = document.createElement('h4');
+        h4_suntime.textContent = `Suntime: ${this.suntime} hrs`;
 
         li.appendChild(h3); 
         li.appendChild(h4_temp);
         li.appendChild(h4_probarain);
-        li.appendChild(h4_humidity);
+        li.appendChild(h4_suntime);
 
         return li;
     }
 }
 
-async function createWeatherCard(numberOfCard) {
+async function createWeatherCard(numberOfCard, inseeCode) {
     document.getElementById('number-day-display').textContent = numberOfCard;
 
     const ul = document.getElementById('weather-cards');
@@ -39,17 +39,18 @@ async function createWeatherCard(numberOfCard) {
     }
 
     const weatherData = []; 
+    const tokenAPI = 'e003b70d11dfefb5064e06e213571d587f54dfb6701c1287f87a604678b0e14e';
 
     for (let i = 0; i < numberOfCard; i++) {
-        const response = await fetch('https://api.meteo-concept.com/api/forecast/daily?token=ecee532ddce7b5e3f19b9a1b25826f40092a21be0a86bc6bc25725374bb1fef2&insee=');
+        const response = await fetch('https://api.meteo-concept.com/api/forecast/daily?token=' + tokenAPI + '&insee=' + inseeCode);
         const data = await response.json();
         const forecast = data.forecast;
         const temperature = `${forecast[i+1].tmax}`;
         const probarain = `${forecast[i+1].probarain}`;
-        const humidity = `${forecast[i+1].humidity}`;
+        const suntime = `${forecast[i+1].sun_hours}`;
 
 
-        const weatherCard = new WeatherCard(temperature, probarain, humidity);
+        const weatherCard = new WeatherCard(temperature, probarain, suntime);
         weatherData.push(weatherCard);
     }
 

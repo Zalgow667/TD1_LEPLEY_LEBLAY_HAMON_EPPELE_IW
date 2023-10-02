@@ -42,10 +42,11 @@ function searchCity() {
 
                         li.onclick = function(event){
                             const inseeCode = event.target.id;
-
+                            document.getElementById('insee-code').textContent = inseeCode;
                             document.getElementById('number-of-weather-card').style.display = 'block';
+                            const tokenAPI = 'e003b70d11dfefb5064e06e213571d587f54dfb6701c1287f87a604678b0e14e'
 
-                            fetch('https://api.meteo-concept.com/api/forecast/daily/0?token=ecee532ddce7b5e3f19b9a1b25826f40092a21be0a86bc6bc25725374bb1fef2&insee=' + inseeCode)
+                            fetch('https://api.meteo-concept.com/api/forecast/daily/0?token=' + tokenAPI + '&insee=' + inseeCode)
                                 .then(response => response.json())
 
                                 .then(data => {
@@ -58,7 +59,6 @@ function searchCity() {
                                     
                                     let weatherCode = `${data.forecast.weather}`
                                     document.getElementById('weather-info-text').textContent = weatherMapping[weatherCode];
-                                    weatherImage.imageSelection(weatherCode);
                                 });
                         };
                         ul.appendChild(li);
@@ -91,14 +91,12 @@ document.getElementById('actual-date').textContent = ' (' + today.getDate() + '/
 document.getElementById('number-of-weather-card').addEventListener('input', () =>  {
     let numberOfCard = document.getElementById('number-of-weather-card').value;
 
-    if(numberOfCard === null){
-        document.getElementById('number-day-display').textContent = 0;
-    }
-
     if(numberOfCard > 7){
         document.getElementById('number-of-weather-card').value = '';
         alert('You must use a number under 7 to display weather-card');
     } else {
-        createWeatherCard(numberOfCard);
+        const inseeCode = document.getElementById('insee-code').textContent;
+        console.log(inseeCode);
+        createWeatherCard(numberOfCard, inseeCode);
     }
 });
