@@ -147,6 +147,10 @@ h1 {
     margin: 5px 0 -12px 0;
 }
 
+#number-of-weather-card {
+    display: none;
+}
+
 footer {
     text-align: center;
     position: fixed;

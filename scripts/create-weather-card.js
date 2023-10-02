@@ -1,57 +1,61 @@
-function createWeatherCard(numberOfCard){
+class WeatherCard {
+    constructor(temperature, probarain, humidity) {
+        this.temperature = temperature;
+        this.probarain = probarain;
+        this.humidity = humidity;
+    }
+
+    render() {
+        const li = document.createElement('li');
+        li.classList.add('card');
+
+        const h3 = document.createElement('h3');
+
+        const h4_temp = document.createElement('h4');
+        h4_temp.textContent = `Temp: ${this.temperature}°C`;
+
+        const h4_probarain = document.createElement('h4');
+        h4_probarain.textContent = `Rain Probability: ${this.probarain}%`;
+
+        const h4_humidity = document.createElement('h4');
+        h4_humidity.textContent = `Humidity: ${this.humidity}%`;
+
+        li.appendChild(h3); 
+        li.appendChild(h4_temp);
+        li.appendChild(h4_probarain);
+        li.appendChild(h4_humidity);
+
+        return li;
+    }
+}
+
+async function createWeatherCard(numberOfCard) {
     document.getElementById('number-day-display').textContent = numberOfCard;
 
-    let ul = document.getElementById('weather-cards');
+    const ul = document.getElementById('weather-cards');
 
     while (ul.firstChild) {
         ul.removeChild(ul.firstChild);
     }
 
-    let currentDate = new Date();
+    const weatherData = []; 
 
-    for(let i = 0; i < numberOfCard; i++){  
-        let li = document.createElement('li');
-        li.classList.add('card');
-        li.setAttribute('id', "day-" + (i+1));
+    for (let i = 0; i < numberOfCard; i++) {
+        const response = await fetch('https://api.meteo-concept.com/api/forecast/daily?token=ecee532ddce7b5e3f19b9a1b25826f40092a21be0a86bc6bc25725374bb1fef2&insee=');
+        const data = await response.json();
+        const forecast = data.forecast;
+        const temperature = `${forecast[i+1].tmax}`;
+        const probarain = `${forecast[i+1].probarain}`;
+        const humidity = `${forecast[i+1].humidity}`;
 
-        let h3 = document.createElement('h3');
 
-        currentDate.setDate(currentDate.getDate() + 1);
-
-        let h4_temp = document.createElement('h4')
-        h4_temp.textContent = 'Temp: __C';
-
-        let h4_wind = document.createElement('h4')
-        h4_wind.textContent = 'Wind: __ M/S';
-
-        let h4_humidity = document.createElement('h4')
-        h4_humidity.textContent = 'Humidity: __%';
-
-        let span = document.createElement('span');
-        span.setAttribute('id', 'date');
-
-        let day = currentDate.getDate();
-        
-        if(day < 10){
-            day = "0" + day;
-        }
-
-        let month = currentDate.getMonth() + 1;
-        
-        if(month < 10){
-            month = "0" + month;
-        }
-
-        let year = currentDate.getFullYear();
-        span.textContent = '(' + day + '/' + month + '/' + year + ')';
-
-        li.appendChild(h3);
-        h3.appendChild(span);
-        li.appendChild(h4_temp);
-        li.appendChild(h4_wind);
-        li.appendChild(h4_humidity);
-        ul.appendChild(li);
+        const weatherCard = new WeatherCard(temperature, probarain, humidity);
+        weatherData.push(weatherCard);
     }
+
+    weatherData.forEach(card => {
+        ul.appendChild(card.render());
+    });
 }
 
 export default createWeatherCard;

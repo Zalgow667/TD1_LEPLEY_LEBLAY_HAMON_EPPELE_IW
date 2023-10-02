@@ -42,7 +42,9 @@ function searchCity() {
 
                         li.onclick = function(event){
                             const inseeCode = event.target.id;
-                        
+
+                            document.getElementById('number-of-weather-card').style.display = 'block';
+
                             fetch('https://api.meteo-concept.com/api/forecast/daily/0?token=ecee532ddce7b5e3f19b9a1b25826f40092a21be0a86bc6bc25725374bb1fef2&insee=' + inseeCode)
                                 .then(response => response.json())
 
