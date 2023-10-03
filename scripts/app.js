@@ -45,7 +45,7 @@ function searchCity() {
                             const inseeCode = event.target.id;
                             document.getElementById('insee-code').textContent = inseeCode;
                             document.getElementById('number-of-weather-card').style.display = 'block';
-                            const tokenAPI = 'e003b70d11dfefb5064e06e213571d587f54dfb6701c1287f87a604678b0e14e'
+                            const tokenAPI = '5c0cadf135fd6cfb956038574e1c512a5a1ceaaae332055011376af57c50bb49'
 
                             fetch('https://api.meteo-concept.com/api/forecast/daily/0?token=' + tokenAPI + '&insee=' + inseeCode)
                                 .then(response => response.json())
@@ -58,7 +58,7 @@ function searchCity() {
                                     document.getElementById('city-sun-time').textContent = `${data.forecast.sun_hours}`;
                                     resultDiv.style.visibility = 'hidden';
                                     
-                                    let weatherCode = `${data.forecast.weather}`
+                                    const weatherCode = parseInt(data.forecast.weather);
                                     changeIcone(weatherCode);
                                     document.getElementById('weather-info-text').textContent = weatherMapping[weatherCode];
                                 });

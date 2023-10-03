@@ -47,7 +47,7 @@ async function createWeatherCard(numberOfCard, inseeCode) {
     }
 
     const weatherData = []; 
-    const tokenAPI = 'e003b70d11dfefb5064e06e213571d587f54dfb6701c1287f87a604678b0e14e';
+    const tokenAPI = '5c0cadf135fd6cfb956038574e1c512a5a1ceaaae332055011376af57c50bb49';
 
     for (let i = 0; i < numberOfCard; i++) {
         const response = await fetch('https://api.meteo-concept.com/api/forecast/daily?token=' + tokenAPI + '&insee=' + inseeCode);
