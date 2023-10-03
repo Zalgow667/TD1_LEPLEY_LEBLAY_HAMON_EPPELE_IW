@@ -1,3 +1,4 @@
+// Creation of the DOM tree
 const root = document.createElement('div');
 const h1 = document.createElement('h1');
     const container = document.createElement('div');
@@ -28,19 +29,25 @@ const h1 = document.createElement('h1');
                     const img = document.createElement('img');
                     const weather_info_text = document.createElement('h4');
     const footer = document.createElement('footer');
-        const pmonGithub = document.createElement('p');
+        const pGithub = document.createElement('p');
         const a = document.createElement('a');
 
-
-//Attributes root
+//Defition of the root id
 root.id = 'root';
+
+//Definition of the textContent of the title
+h1.textContent = 'Weather Dashboard';
+
+//Attributes container / weather-input, defition of the class
 container.className = 'container';
+
 weather_input.className = 'weather-input';
+
+//Attributes label definition of the name and textContent
 label.setAttribute('name', 'zip-search');
 label.textContent = 'Enter a City Name';
 
-h1.textContent = 'Weather Dashboard';
-//Attributes input
+//Definition of the input attributes
 input.setAttribute('id', 'zip-code-input');
 input.setAttribute('type', 'text');
 input.setAttribute('placeholder', 'Entrer un code postal');
@@ -50,50 +57,68 @@ input.setAttribute('maxlength', '5');
 //Attributes result
 result.setAttribute('id', 'result');
 
-
+//Definition of the class weather-data, current-weather and details
 weather_data.className = 'weather-data';
+
 current_weather.className = 'current-weather';
 
-//Attributes details
+details.className = 'details';
+
+//Definition of the city_location attributes and textContent
 city_location.setAttribute('id', 'city-location');
+city_location.textContent = '__';
+
+//Definition of the actual_date attributes and textContent
+tirer.textContent = ' - ';
+
 actual_date.setAttribute('id', 'actual-date');
 
-city_location.textContent = '__';
-tirer.textContent = ' - ';
-//Attributes h3TempMax
+
+
+//Attributes h3TempMax and h3TempMin
 h3TempMax.textContent = 'Temperature max: ';
+
 city_temperature_max.setAttribute('id', 'city-temperature-max');
 city_temperature_max.textContent = '__';
+
 city_temperature_max_degres.textContent = '°C';
 
 //Attributes h3TempMin
 h3TempMin.textContent = 'Temperature min: ';
 city_temperature_min.setAttribute('id', 'city-temperature-min');
 city_temperature_min.textContent = '__';
+
 city_temperature_min_degres.textContent = '°C';
 
-details.className = 'details';
+
 
 //Attributes Rain_probability   
 Rain_probability.textContent = 'Rain probability: ';
+
 city_Rain_probability.setAttribute('id', 'city-Rain_probability');
 city_Rain_probability.textContent = '__';
 city_Rain_probability.id = 'city-rain-probability';
 city_Rain_probability_percent.textContent = '%';
 
 h3SunTime.textContent = 'Sun time: ';
+
 city_SunTime.setAttribute('id', 'city-sun-time');
 city_SunTime.textContent = '__';
+
 city_SunTime_hours.textContent = ' hours';
 
 
 icon.className = 'icon';
+
+
 img.setAttribute('alt', 'weather-icon');
 img.src = 'https://openweathermap.org/img/wn/10d@4x.png';
+
 weather_info_text.textContent = '_______________';
 weather_info_text.id = 'weather-info-text';
 
-pmonGithub.textContent = 'Crée par ';
+pGithub.textContent = 'Crée par ';
+
 a.setAttribute('href', 'https://github.com/Zalgow667/TD1_LEPLEY_LEBLAY_HAMON_EPPELE_IW/tree/v1');
 a.textContent = 'Squid Game';
 a.setAttribute('target', '_blank');
@@ -131,5 +156,5 @@ document.body.appendChild(root)
                     icon.appendChild(img);
                     icon.appendChild(weather_info_text);
     root.appendChild(footer);
-        footer.appendChild(pmonGithub);
-            pmonGithub.appendChild(a);
+        footer.appendChild(pGithub);
+            pGithub.appendChild(a);
