@@ -57,19 +57,20 @@ function searchCity() {
 
                         li.onclick = function(event){
                             const inseeCode = event.target.id;
-                            document.getElementById('insee-code').textContent = inseeCode;
+                            document.getElementById('insee-code').textContent = " " + inseeCode + " -";
                             const tokenAPI = '5c0cadf135fd6cfb956038574e1c512a5a1ceaaae332055011376af57c50bb49'
 
                             fetch('https://api.meteo-concept.com/api/forecast/daily/0?token=' + tokenAPI + '&insee=' + inseeCode)
                                 .then(response => response.json())
 
                                 .then(data => {
-                                    document.getElementById('city-location').textContent = `${data.city.name}`;
+                                    document.getElementById('city-location').textContent = `${data.city.name} -`;
                                     document.getElementById('city-temperature-max').textContent = `${data.forecast.tmax}`;
                                     document.getElementById('city-temperature-min').textContent = `${data.forecast.tmin}`;
                                     document.getElementById('city-rain-probability').textContent = `${data.forecast.probarain}`;
                                     document.getElementById('city-sun-time').textContent = `${data.forecast.sun_hours}`;
                                     resultDiv.style.visibility = 'hidden';
+                                    openBtn.style.display = 'block';
                                     
                                     let weatherCode = `${data.forecast.weather}`
                                     changeIcone(weatherCode);
