@@ -79,12 +79,17 @@ function searchCity() {
 
 let today = new Date();
 let months = today.getMonth() + 1;
+let day = today.getDate();
 
 if(months < 10){
     months = '0' + months;
 }
 
-document.getElementById('actual-date').textContent = ' (' + today.getDate() + '/' + months + '/' + today.getFullYear() + ')';
+if(day < 10){
+    day = '0' + day;
+}
+
+document.getElementById('actual-date').textContent = ' (' + day + '/' + months + '/' + today.getFullYear() + ')';
 
 /* WEATHER CREATE CARD */
 
