@@ -1,5 +1,6 @@
 import weatherMapping from './weather-code-map.js';
 import createWeatherCard from './create-weather-card.js';
+import changeIcone from './card-image-management.js';
 
 let today = new Date();
 let months = today.getMonth() + 1;
@@ -71,6 +72,7 @@ function searchCity() {
                                     resultDiv.style.visibility = 'hidden';
                                     
                                     let weatherCode = `${data.forecast.weather}`
+                                    changeIcone(weatherCode);
                                     document.getElementById('weather-info-text').textContent = weatherMapping[weatherCode];
                                 });
                         };
