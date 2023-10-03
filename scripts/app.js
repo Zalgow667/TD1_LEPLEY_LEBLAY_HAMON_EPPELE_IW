@@ -1,6 +1,20 @@
 import weatherMapping from './weather-code-map.js';
 import createWeatherCard from './create-weather-card.js';
 
+let today = new Date();
+let months = today.getMonth() + 1;
+let day = today.getDate();
+const openBtn = document.getElementById('openBtn');
+const closeBtn = document.getElementById('closeBtn');
+const sendBtn = document.getElementById('sendBtn')
+const modal = document.getElementById('modal');
+const showLatitudeCheckbox = document.getElementById('showLatitude');
+const showLongitudeCheckbox = document.getElementById('showLongitude');
+const showRainCheckbox = document.getElementById('showRain');
+const showWindSpeedCheckbox = document.getElementById('showWindSpeed');
+const showWindDirectionCheckbox = document.getElementById('showWindDirection');
+const sendSettingsButton = document.getElementById('sendBtn');
+
 document.getElementById('zip-code-input').addEventListener('input', () => {
     const codePost = document.getElementById('zip-code-input').value;
     
@@ -76,21 +90,12 @@ function searchCity() {
     }
 }
 
-let today = new Date();
-let months = today.getMonth() + 1;
-let day = today.getDate();
-
 day = day < 10 ? '0' + day : day;
 months = months < 10 ? '0' + months : months;
 
 document.getElementById('actual-date').textContent = ' (' + day + '/' + months + '/' + today.getFullYear() + ')';
 
 /* MODAL MANAGE */
-
-const openBtn = document.getElementById('openBtn');
-const closeBtn = document.getElementById('closeBtn');
-const sendBtn = document.getElementById('sendBtn')
-const modal = document.getElementById('modal');
 
 openBtn.addEventListener('click', () => {
     modal.showModal();
@@ -110,13 +115,6 @@ document.getElementById('number-of-weather-card').addEventListener('input', () =
     let numberOfCard = document.getElementById('number-of-weather-card').value;
     document.getElementById('value-input-range').textContent = numberOfCard;
 });
-
-const showLatitudeCheckbox = document.getElementById('showLatitude');
-const showLongitudeCheckbox = document.getElementById('showLongitude');
-const showRainCheckbox = document.getElementById('showRain');
-const showWindSpeedCheckbox = document.getElementById('showWindSpeed');
-const showWindDirectionCheckbox = document.getElementById('showWindDirection');
-const sendSettingsButton = document.getElementById('sendBtn');
 
 sendSettingsButton.addEventListener('click', function() {
     const showLatitude = showLatitudeCheckbox.checked;
