@@ -111,9 +111,21 @@ document.getElementById('number-of-weather-card').addEventListener('input', () =
     document.getElementById('value-input-range').textContent = numberOfCard;
 });
 
-document.getElementById('sendBtn').addEventListener('click', () => {
+const showLatitudeCheckbox = document.getElementById('showLatitude');
+const showLongitudeCheckbox = document.getElementById('showLongitude');
+const showRainCheckbox = document.getElementById('showRain');
+const showWindSpeedCheckbox = document.getElementById('showWindSpeed');
+const showWindDirectionCheckbox = document.getElementById('showWindDirection');
+const sendSettingsButton = document.getElementById('sendBtn');
+
+sendSettingsButton.addEventListener('click', function() {
+    const showLatitude = showLatitudeCheckbox.checked;
+    const showLongitude = showLongitudeCheckbox.checked;
+    const showRain = showRainCheckbox.checked;
+    const showWindSpeed = showWindSpeedCheckbox.checked;
+    const showWindDirection = showWindDirectionCheckbox.checked;
     let numberOfCard = document.getElementById('number-of-weather-card').value;
-    const inseeCode = document.getElementById('insee-code').textContent;
-    console.log(inseeCode);
-    createWeatherCard(numberOfCard, inseeCode);
-})
+    let inseeCode = document.getElementById('insee-code').textContent;
+
+    createWeatherCard(numberOfCard, inseeCode, { showLatitude, showLongitude, showRain, showWindSpeed, showWindDirection });
+});

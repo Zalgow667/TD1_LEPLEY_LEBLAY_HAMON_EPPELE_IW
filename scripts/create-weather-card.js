@@ -1,13 +1,18 @@
 class WeatherCard {
-    constructor(date, temperature_max, temperature_min, probarain, suntime) {
+    constructor(date, temperature_max, temperature_min, probarain, suntime, latitude, longitude, rr10, wind10m, dirwind10m) {
         this.date = date;
         this.temperature_max = temperature_max;
         this.temperature_min = temperature_min;
         this.probarain = probarain;
         this.suntime = suntime;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.rr10 = rr10;
+        this.wind10m = wind10m;
+        this.dirwind10m = dirwind10m;
     }
 
-    render() {
+    render(options) {
         const li = document.createElement('li');
         li.classList.add('card');
 
@@ -25,7 +30,7 @@ class WeatherCard {
         h4_probarain.textContent = `Rain Proba: ${this.probarain}%`;
 
         const h4_suntime = document.createElement('h4');
-        h4_suntime.textContent = `Suntime: ${this.suntime} hours`;
+        h4_suntime.textContent = `Sun: ${this.suntime} hours`;
 
         li.appendChild(h3); 
         li.appendChild(h4_temp_max);
@@ -33,11 +38,41 @@ class WeatherCard {
         li.appendChild(h4_probarain);
         li.appendChild(h4_suntime);
 
+        if(options.showLatitude){
+            const h4_latitude = document.createElement('h4');
+            h4_latitude.textContent = `Latitude: ${this.latitude}`;
+            li.appendChild(h4_latitude);
+        }
+
+        if (options.showLongitude) {
+            const h4_longitude = document.createElement('h4');
+            h4_longitude.textContent = `Longitude: ${this.longitude}`;
+            li.appendChild(h4_longitude);
+        }
+
+        if (options.showRain) {
+            const h4_rain = document.createElement('h4');
+            h4_rain.textContent = `Rain Proba: ${this.rr10}%`;
+            li.appendChild(h4_rain);
+        }
+        
+        if (options.showWindSpeed) {
+            const h4_wind_speed = document.createElement('h4');
+            h4_wind_speed.textContent = `Wind Speed: ${this.wind10m} m/s`;
+            li.appendChild(h4_wind_speed);
+        }
+        
+        if (options.showWindDirection) {
+            const h4_wind_direction = document.createElement('h4');
+            h4_wind_direction.textContent = `Wind Direction: ${this.dirwind10m}`;
+            li.appendChild(h4_wind_direction);
+        }        
+
         return li;
     }
 }
 
-async function createWeatherCard(numberOfCard, inseeCode) {
+async function createWeatherCard(numberOfCard, inseeCode, options) {
     document.getElementById('number-day-display').textContent = numberOfCard;
 
     const ul = document.getElementById('weather-cards');
@@ -53,10 +88,6 @@ async function createWeatherCard(numberOfCard, inseeCode) {
         const response = await fetch('https://api.meteo-concept.com/api/forecast/daily?token=' + tokenAPI + '&insee=' + inseeCode);
         const data = await response.json();
         const forecast = data.forecast;
-        const temperature_max = `${forecast[i+1].tmax}`;
-        const temperature_min = `${forecast[i+1].tmin}`;
-        const probarain = `${forecast[i+1].probarain}`;
-        const suntime = `${forecast[i+1].sun_hours}`;
 
         let today = new Date();
         let months = today.getMonth() + 1;
@@ -67,13 +98,16 @@ async function createWeatherCard(numberOfCard, inseeCode) {
 
         const date = day + '/' + months + '/' + today.getFullYear();
 
-        const weatherCard = new WeatherCard(date, temperature_max, temperature_min, probarain, suntime);
+        const weatherCard = new WeatherCard(date, forecast[i+1].tmax, forecast[i+1].tmin, forecast[i+1].probarain, forecast[i+1].sun_hours, forecast[i+1].latitude, forecast[i+1].longitude, forecast[i+1].rr10, forecast[i+1].wind10m, forecast[i+1].dirwind10m);
         weatherData.push(weatherCard);
     }
 
     weatherData.forEach(card => {
-        ul.appendChild(card.render());
+        ul.appendChild(card.render(options));
     });
 }
 
 export default createWeatherCard;
+
+
+
