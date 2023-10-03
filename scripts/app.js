@@ -81,13 +81,8 @@ let today = new Date();
 let months = today.getMonth() + 1;
 let day = today.getDate();
 
-if(months < 10){
-    months = '0' + months;
-}
-
-if(day < 10){
-    day = '0' + day;
-}
+day = day < 10 ? '0' + day : day;
+months = months < 10 ? '0' + months : months;
 
 document.getElementById('actual-date').textContent = ' (' + day + '/' + months + '/' + today.getFullYear() + ')';
 
