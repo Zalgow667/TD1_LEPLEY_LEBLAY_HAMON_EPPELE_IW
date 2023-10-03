@@ -64,7 +64,7 @@ class WeatherCard {
         
         if (options.showWindDirection) {
             const h4_wind_direction = document.createElement('h4');
-            h4_wind_direction.textContent = `Wind Direction: ${this.dirwind10m}`;
+            h4_wind_direction.textContent = `Wind Direction: ${this.dirwind10m}°`;
             li.appendChild(h4_wind_direction);
         }        
 
