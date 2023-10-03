@@ -1,5 +1,6 @@
 import weatherMapping from './weather-code-map.js';
 import createWeatherCard from './create-weather-card.js';
+import changeIcone from './weather-management-image.js';
 
 document.getElementById('zip-code-input').addEventListener('input', () => {
     const codePost = document.getElementById('zip-code-input').value;
@@ -58,6 +59,7 @@ function searchCity() {
                                     resultDiv.style.visibility = 'hidden';
                                     
                                     let weatherCode = `${data.forecast.weather}`
+                                    changeIcone(weatherCode);
                                     document.getElementById('weather-info-text').textContent = weatherMapping[weatherCode];
                                 });
                         };
