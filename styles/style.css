@@ -217,7 +217,7 @@ footer {
 
     .weather-input {
       width: 100%;
-      margin-bottom: 160px;
+      margin-bottom: 110px;
     }
 
     .weather-data h2 {
@@ -226,9 +226,14 @@ footer {
 
     #result {
         z-index: 999;
+        max-height: 138px;
         width: 95.2%;
         position: absolute;
     }
+
+    footer {
+        display: none;
+     }
 }
 
 @media (max-width: 560px) {
