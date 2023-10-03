@@ -11,7 +11,7 @@ body {
     background-color: #E3F2FD;
 }
 
-h1 {
+#title {
     color: #fff;
     padding: 18px 0;
     text-align: center;
@@ -86,6 +86,24 @@ h1 {
     text-transform: capitalize;
 }
 
+#openBtn {
+    background-color: #ffffff;
+    color:  #30469E;
+    border: solid 2px black;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin-top: 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#openBtn:hover {
+    background-color: #30469E;
+    color: #ffffff;
+}
+
+
 #result {
     max-height: 184px;
     overflow-y: auto;
@@ -147,8 +165,93 @@ h1 {
     margin: 5px 0 -12px 0;
 }
 
-#number-of-weather-card {
-    display: none;
+#modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+    z-index: 9999;
+}
+
+#modalTitle {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+input[type="checkbox"] {
+    margin-right: 2px;
+    vertical-align: middle;
+}
+
+input[type="range"] {
+    width: 100%;
+    height: 10px;
+    margin: 10px 0;
+    cursor: pointer;
+    appearance: none;
+    background-color: #ccc;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #4869EF;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background-color: #30469E;
+}
+
+#closeBtn {
+    background-color: #ef7448;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+#sendBtn {
+    background-color: #4869EF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+#closeBtn:hover {
+    background-color: #c14226;
+}
+
+#sendBtn:hover {
+    background-color: #306e9e;
+}
+
+#modal::backdrop {
+    background-color: #303030c0;
 }
 
 footer {
@@ -174,54 +277,58 @@ footer {
     color: #4869EF;
 }
 
+/* Votre CSS existant... */
+
+/* Ajoutez ces règles pour le rendu responsive */
+
 @media (max-width: 1400px) {
     .weather-data .current-weather {
-      padding: 20px;
+        padding: 20px;
     }
 
     #weather-cards {
-      flex-wrap: wrap;
+        flex-wrap: wrap;
     }
 
     #weather-cards .card {
-      width: calc(100% / 4 - 15px);
+        width: calc(100% / 4 - 15px);
     }
 }
 
 @media (max-width: 1200px) {
     #weather-cards .card {
-      width: calc(100% / 3 - 15px);
+        width: calc(100% / 3 - 15px);
     }
 }
 
 @media (max-width: 950px) {
     .weather-input {
-      width: 450px;
+        width: 450px;
     }
 
     #weather-cards .card {
-      width: calc(100% / 2 - 10px);
+        width: calc(100% / 2 - 10px);
     }
 }
-  
+
 @media (max-width: 750px) {
-    h1 {
-      font-size: 1.45rem;
-      padding: 16px 0;
+    #title {
+        font-size: 1.45rem;
+        padding: 16px 0;
     }
-    
+
     .container {
-      flex-wrap: wrap;
-      padding: 15px;
+        flex-wrap: wrap;
+        padding: 15px;
     }
 
     .weather-input {
-      width: 100%;
-      margin-bottom: 110px;
+        width: 100%;
+        margin-bottom: 110px;
     }
 
     .weather-data h2 {
-      font-size: 1.35rem;
+        font-size: 1.35rem;
     }
 
     #result {
@@ -233,7 +340,11 @@ footer {
 
     footer {
         display: none;
-     }
+    }
+
+    #modal {
+        width: 320px;
+    }
 }
 
 @media (max-width: 560px) {
@@ -260,9 +371,8 @@ footer {
     }
 }
 
-@media (max-height: 600px){
+@media (max-height: 600px) {
     footer {
         display: none;
     }
 }
-

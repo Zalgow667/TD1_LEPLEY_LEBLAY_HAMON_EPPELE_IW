@@ -43,8 +43,7 @@ function searchCity() {
                         li.onclick = function(event){
                             const inseeCode = event.target.id;
                             document.getElementById('insee-code').textContent = inseeCode;
-                            document.getElementById('number-of-weather-card').style.display = 'block';
-                            const tokenAPI = 'e003b70d11dfefb5064e06e213571d587f54dfb6701c1287f87a604678b0e14e'
+                            const tokenAPI = '5c0cadf135fd6cfb956038574e1c512a5a1ceaaae332055011376af57c50bb49'
 
                             fetch('https://api.meteo-concept.com/api/forecast/daily/0?token=' + tokenAPI + '&insee=' + inseeCode)
                                 .then(response => response.json())
@@ -86,17 +85,35 @@ months = months < 10 ? '0' + months : months;
 
 document.getElementById('actual-date').textContent = ' (' + day + '/' + months + '/' + today.getFullYear() + ')';
 
+/* MODAL MANAGE */
+
+const openBtn = document.getElementById('openBtn');
+const closeBtn = document.getElementById('closeBtn');
+const sendBtn = document.getElementById('sendBtn')
+const modal = document.getElementById('modal');
+
+openBtn.addEventListener('click', () => {
+    modal.showModal();
+});
+
+closeBtn.addEventListener('click', () => {
+    modal.close();
+});
+
+sendBtn.addEventListener('click', () => {
+    modal.close();
+});
+
 /* WEATHER CREATE CARD */
 
 document.getElementById('number-of-weather-card').addEventListener('input', () =>  {
     let numberOfCard = document.getElementById('number-of-weather-card').value;
-
-    if(numberOfCard > 7){
-        document.getElementById('number-of-weather-card').value = '';
-        alert('You must use a number under 7 to display weather-card');
-    } else {
-        const inseeCode = document.getElementById('insee-code').textContent;
-        console.log(inseeCode);
-        createWeatherCard(numberOfCard, inseeCode);
-    }
+    document.getElementById('value-input-range').textContent = numberOfCard;
 });
+
+document.getElementById('sendBtn').addEventListener('click', () => {
+    let numberOfCard = document.getElementById('number-of-weather-card').value;
+    const inseeCode = document.getElementById('insee-code').textContent;
+    console.log(inseeCode);
+    createWeatherCard(numberOfCard, inseeCode);
+})

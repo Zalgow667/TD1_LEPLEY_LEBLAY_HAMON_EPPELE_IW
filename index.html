@@ -8,7 +8,7 @@
     <title>Instant Weather | JavaScript Project</title>
 </head>
 <body>
-    <h1>Weather Dashbord</h1>
+    <h1 id="title">Weather Dashbord</h1>
     <div class="container">
         <div class="weather-input">
             <label name="zip-search">Enter a City Name</label>
@@ -23,9 +23,39 @@
                     <h3>Temp min: <span id="city-temperature-min">__</span>°C</h3>
                     <h3>Rain probability: <span id="city-rain-probability">__</span>%</h3>
                     <h3>Sun time: <span id="city-sun-time">__</span> hours</h3>
-                    <h4>You want to display more day ?</h4>
-                    <input id="number-of-weather-card" aria-label="number-day-range" name="number-day-range" type="range" step="1" value="0" min="0" max="7">
+                    <button id="openBtn">Display more day</button>    
                 </div>
+
+                <dialog id="modal">
+                    <h1 id="modalTitle">Display option settings</h1>
+                        <label>
+                            <input type="checkbox" id="showLatitude"> - Latitude décimale de la commune
+                        </label>
+                    <br>
+                        <label>
+                            <input type="checkbox" id="showLongitude"> - Longitude décimale de la commune
+                        </label>
+                    <br>
+                        <label>
+                            <input type="checkbox" id="showRain"> - Cumul de pluie sur la journée en mm
+                        </label>
+                    <br>
+                        <label>
+                            <input type="checkbox" id="showWindSpeed"> - Vent moyen à 10 mètres en km/h
+                        </label>
+                    <br>
+                        <label>
+                            <input type="checkbox" id="showWindDirection"> - Direction du vent en degrés (0 à 360°)
+                        </label>
+                    <br>
+                    
+                    <label aria-label="display-number-day-range">Nombre de jour : <span id="value-input-range">0</span></label>
+                    <input id="number-of-weather-card" aria-label="number-day-range" name="number-day-range" type="range" step="1" value="0" min="0" max="7">
+                    <button id="sendBtn">Send settings</button>
+                    <button id="closeBtn">Close settings</button>
+                </dialog>
+                
+
                 <div class="icon">
                     <img src="https://openweathermap.org/img/wn/10d@4x.png" alt="weather-icon">
                     <h4 id="weather-info-text">_____________</h4>
