@@ -1,3 +1,4 @@
+// Define a WeatherCard class with a constructor to initialize its properties
 class WeatherCard {
     constructor(date, temperature_max, temperature_min, probarain, suntime, latitude, longitude, rr10, wind10m, dirwind10m) {
         this.date = date;
@@ -12,6 +13,7 @@ class WeatherCard {
         this.dirwind10m = dirwind10m;
     }
 
+    // Define a render method to create and return an HTML element representing the weather card
     render(options) {
         const li = document.createElement('li');
         li.classList.add('card');
@@ -32,13 +34,14 @@ class WeatherCard {
         const h4_suntime = document.createElement('h4');
         h4_suntime.textContent = `Sun: ${this.suntime} hours`;
 
-        li.appendChild(h3); 
+        li.appendChild(h3);
         li.appendChild(h4_temp_max);
         li.appendChild(h4_temp_min);
         li.appendChild(h4_probarain);
         li.appendChild(h4_suntime);
 
-        if(options.showLatitude){
+        // Conditionally add additional weather information based on the options
+        if (options.showLatitude) {
             const h4_latitude = document.createElement('h4');
             h4_latitude.textContent = `Latitude: ${this.latitude}`;
             li.appendChild(h4_latitude);
@@ -55,33 +58,36 @@ class WeatherCard {
             h4_rain.textContent = `Rain Proba: ${this.rr10}%`;
             li.appendChild(h4_rain);
         }
-        
+
         if (options.showWindSpeed) {
             const h4_wind_speed = document.createElement('h4');
             h4_wind_speed.textContent = `Wind Speed: ${this.wind10m} m/s`;
             li.appendChild(h4_wind_speed);
         }
-        
+
         if (options.showWindDirection) {
             const h4_wind_direction = document.createElement('h4');
             h4_wind_direction.textContent = `Wind Direction: ${this.dirwind10m}°`;
             li.appendChild(h4_wind_direction);
-        }        
+        }
 
         return li;
     }
 }
 
+// Define an asynchronous function createWeatherCard to fetch weather data and create weather cards
 async function createWeatherCard(numberOfCard, inseeCode, options) {
+    // Update the number of days displayed
     document.getElementById('number-day-display').textContent = numberOfCard;
 
     const ul = document.getElementById('weather-cards');
 
+    // Remove any existing weather cards from the list
     while (ul.firstChild) {
         ul.removeChild(ul.firstChild);
     }
 
-    const weatherData = []; 
+    const weatherData = [];
     const tokenAPI = '5c0cadf135fd6cfb956038574e1c512a5a1ceaaae332055011376af57c50bb49';
 
     for (let i = 0; i < numberOfCard; i++) {
@@ -91,23 +97,23 @@ async function createWeatherCard(numberOfCard, inseeCode, options) {
 
         let today = new Date();
         let months = today.getMonth() + 1;
-        let day = (today.getDate()+(i+1));
+        let day = (today.getDate() + (i + 1));
 
         day = day < 10 ? '0' + day : day;
         months = months < 10 ? '0' + months : months;
 
         const date = day + '/' + months + '/' + today.getFullYear();
 
-        const weatherCard = new WeatherCard(date, forecast[i+1].tmax, forecast[i+1].tmin, forecast[i+1].probarain, forecast[i+1].sun_hours, forecast[i+1].latitude, forecast[i+1].longitude, forecast[i+1].rr10, forecast[i+1].wind10m, forecast[i+1].dirwind10m);
+        // Create a new WeatherCard instance and add it to the weatherData array
+        const weatherCard = new WeatherCard(date, forecast[i + 1].tmax, forecast[i + 1].tmin, forecast[i + 1].probarain, forecast[i + 1].sun_hours, forecast[i + 1].latitude, forecast[i + 1].longitude, forecast[i + 1].rr10, forecast[i + 1].wind10m, forecast[i + 1].dirwind10m);
         weatherData.push(weatherCard);
     }
 
+    // Render each weather card and add it to the UL element
     weatherData.forEach(card => {
         ul.appendChild(card.render(options));
     });
 }
 
+// Export the createWeatherCard function as the default export of this module
 export default createWeatherCard;
-
-
-

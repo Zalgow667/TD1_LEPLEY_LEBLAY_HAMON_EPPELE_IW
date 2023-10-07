@@ -1,76 +1,116 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
+    <!-- Importing the stylesheet -->
     <link rel="stylesheet" href="./styles/style.css">
+    <!-- Setting the favicon for the website -->
     <link rel="shortcut icon" type="image/png" href="./images/logo.png">
+    <!-- Configuring the viewport for responsiveness -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Setting the title of the webpage -->
     <title>Instant Weather | JavaScript Project</title>
 </head>
+
 <body>
-    <h1 id="title">Weather Dashbord</h1>
+    <!-- Main heading for the page -->
+    <h1 id="title">Weather Dashboard</h1>
     <div class="container">
+        <!-- Weather input section -->
         <div class="weather-input">
+            <!-- Label for ZIP code input -->
             <label aria-label="zip-search">Enter a ZIP Code</label>
-            <input id="zip-code-input" type="text" placeholder="Entrer un code postale" aria-label="zip-search" maxlength="5">
+            <!-- Input field for ZIP code -->
+            <input id="zip-code-input" type="text" placeholder="Entrer un code postal" aria-label="zip-search"
+                maxlength="5">
+            <!-- Container for search results -->
             <div id="result"></div>
         </div>
+        <!-- Weather data section -->
         <div class="weather-data">
+            <!-- Current weather display -->
             <div class="current-weather">
+                <!-- Weather details -->
                 <div class="details">
-                    <h2><span id="city-location">? -</span><span id="insee-code"></span><span id="actual-date"></span></h2>
+                    <!-- City location and details -->
+                    <h2><span id="city-location">? -</span><span id="insee-code"></span><span
+                            id="actual-date"></span></h2>
+                    <!-- Maximum temperature -->
                     <h3>Temp max: <span id="city-temperature-max"></span>°C</h3>
+                    <!-- Minimum temperature -->
                     <h3>Temp min: <span id="city-temperature-min"></span>°C</h3>
+                    <!-- Rain probability -->
                     <h3>Rain proba: <span id="city-rain-probability"></span>%</h3>
+                    <!-- Sun time -->
                     <h3>Sun time: <span id="city-sun-time"></span> hours</h3>
-                    <button id="openBtn">Display more day</button>    
+                    <!-- Button to open display options -->
+                    <button id="openBtn">Display more day</button>
                 </div>
-
+                <!-- Modal for display options -->
                 <dialog id="modal">
+                    <!-- Title for display options modal -->
                     <h1 id="modalTitle">Display option settings</h1>
+                    <!-- Checkbox for latitude display -->
                     <label>
                         <input type="checkbox" id="showLatitude"> - Decimal Latitude of the Municipality
                     </label>
                     <br>
+                    <!-- Checkbox for longitude display -->
                     <label>
                         <input type="checkbox" id="showLongitude"> - Decimal Longitude of the Municipality
                     </label>
                     <br>
+                    <!-- Checkbox for rainfall display -->
                     <label>
                         <input type="checkbox" id="showRain"> - Rainfall Accumulation for the Day in mm
                     </label>
                     <br>
+                    <!-- Checkbox for wind speed display -->
                     <label>
                         <input type="checkbox" id="showWindSpeed"> - Average Wind at 10 Meters in km/h
                     </label>
                     <br>
+                    <!-- Checkbox for wind direction display -->
                     <label>
                         <input type="checkbox" id="showWindDirection"> - Wind Direction in Degrees (0 to 360°)
                     </label>
                     <br>
-                    
-                    
-                    <label aria-label="display-number-day-range">Number of days : <span id="value-input-range">0</span></label>
-                    <input id="number-of-weather-card" aria-label="number-day-range" name="number-day-range" type="range" step="1" value="0" min="0" max="7">
+                    <!-- Label and input range for the number of days to display -->
+                    <label aria-label="display-number-day-range">Number of days : <span
+                            id="value-input-range">0</span></label>
+                    <input id="number-of-weather-card" aria-label="number-day-range" name="number-day-range"
+                        type="range" step="1" value="0" min="0" max="7">
+                    <!-- Buttons to send and close display options -->
                     <button id="sendBtn">Send settings</button>
                     <button id="closeBtn">Close settings</button>
                 </dialog>
-                
-
+                <!-- Icon and weather information -->
                 <div class="icon">
-                    <img id="weather-info-icon" src="./images/icones/icons8-clouds-with-glass-64.png" alt="weather icone">
+                    <!-- Weather icon -->
+                    <img id="weather-info-icon" src="./images/icones/icons8-clouds-with-glass-64.png"
+                        alt="weather icon">
+                    <!-- Weather information text -->
                     <h4 id="weather-info-text">Waiting research...</h4>
                 </div>
             </div>
+            <!-- Days forecast section -->
             <div class="days-forecast">
+                <!-- Title for the day forecast -->
                 <h2 id="title-day-forecast"><span id="number-day-display">0</span> - Day Forecast</h2>
+                <!-- List for weather cards -->
                 <ul id="weather-cards"></ul>
             </div>
         </div>
     </div>
+    <!-- Footer section -->
     <footer id="footer-instant-weather">
-        <p>Crée par <a href="https://github.com/Zalgow667/TD1_LEPLEY_LEBLAY_HAMON_EPPELE_IW" target="_blank" id="mon_github">Squid Game</a> - 2023</p>
-    </footer>   
+        <!-- Attribution and GitHub link -->
+        <p>Créé par <a href="https://github.com/Zalgow667/TD1_LEPLEY_LEBLAY_HAMON_EPPELE_IW" target="_blank"
+                id="mon_github">Squid Game</a> - 2023</p>
+    </footer>
+    <!-- JavaScript script import -->
     <script type="module" src="./scripts/app.js"></script>
 </body>
+
 </html>
