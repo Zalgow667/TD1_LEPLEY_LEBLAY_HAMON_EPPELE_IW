@@ -8,31 +8,68 @@
     <title>Instant Weather | JavaScript Project</title>
 </head>
 <body>
-    <h1>Weather Dashbord</h1>
+    <h1 id="title">Weather Dashbord</h1>
     <div class="container">
         <div class="weather-input">
-            <label name="zip-search">Enter a City Name</label>
+            <label aria-label="zip-search">Enter a ZIP Code</label>
             <input id="zip-code-input" type="text" placeholder="Entrer un code postale" aria-label="zip-search" maxlength="5">
             <div id="result"></div>
         </div>
         <div class="weather-data">
             <div class="current-weather">
                 <div class="details">
-                    <h2><span id="city-location">__</span> - <span id="actual-date"></span></h2>
-                    <h3>Temperature max: <span id="city-temperature-max">__</span>°C</h3>
-                    <h3>Temperature min: <span id="city-temperature-min">__</span>°C</h3>
-                    <h3>Rain probability: <span id="city-rain-probability">__</span>%</h3>
-                    <h3>Sun time: <span id="city-sun-time">__</span> hours</h3>
+                    <h2><span id="city-location">? -</span><span id="insee-code"></span><span id="actual-date"></span></h2>
+                    <h3>Temp max: <span id="city-temperature-max"></span>°C</h3>
+                    <h3>Temp min: <span id="city-temperature-min"></span>°C</h3>
+                    <h3>Rain proba: <span id="city-rain-probability"></span>%</h3>
+                    <h3>Sun time: <span id="city-sun-time"></span> hours</h3>
+                    <button id="openBtn">Display more day</button>    
                 </div>
+
+                <dialog id="modal">
+                    <h1 id="modalTitle">Display option settings</h1>
+                    <label>
+                        <input type="checkbox" id="showLatitude"> - Decimal Latitude of the Municipality
+                    </label>
+                    <br>
+                    <label>
+                        <input type="checkbox" id="showLongitude"> - Decimal Longitude of the Municipality
+                    </label>
+                    <br>
+                    <label>
+                        <input type="checkbox" id="showRain"> - Rainfall Accumulation for the Day in mm
+                    </label>
+                    <br>
+                    <label>
+                        <input type="checkbox" id="showWindSpeed"> - Average Wind at 10 Meters in km/h
+                    </label>
+                    <br>
+                    <label>
+                        <input type="checkbox" id="showWindDirection"> - Wind Direction in Degrees (0 to 360°)
+                    </label>
+                    <br>
+                    
+                    
+                    <label aria-label="display-number-day-range">Number of days : <span id="value-input-range">0</span></label>
+                    <input id="number-of-weather-card" aria-label="number-day-range" name="number-day-range" type="range" step="1" value="0" min="0" max="7">
+                    <button id="sendBtn">Send settings</button>
+                    <button id="closeBtn">Close settings</button>
+                </dialog>
+                
+
                 <div class="icon">
-                    <img src="https://openweathermap.org/img/wn/10d@4x.png" alt="weather-icon">
-                    <h4 id="weather-info-text">_______________</h4>
+                    <img id="weather-info-icon" src="./images/icones/icons8-clouds-with-glass-64.png" alt="weather icone">
+                    <h4 id="weather-info-text">Waiting research...</h4>
                 </div>
+            </div>
+            <div class="days-forecast">
+                <h2 id="title-day-forecast"><span id="number-day-display">0</span> - Day Forecast</h2>
+                <ul id="weather-cards"></ul>
             </div>
         </div>
     </div>
-    <footer>
-        <p>Crée par <a href="https://github.com/Zalgow667/TD1_LEPLEY_LEBLAY_HAMON_EPPELE_IW/tree/v1" target="_blank" id="mon_github">Squid Game</a> - 2023</p>
+    <footer id="footer-instant-weather">
+        <p>Crée par <a href="https://github.com/Zalgow667/TD1_LEPLEY_LEBLAY_HAMON_EPPELE_IW" target="_blank" id="mon_github">Squid Game</a> - 2023</p>
     </footer>   
     <script type="module" src="./scripts/app.js"></script>
 </body>

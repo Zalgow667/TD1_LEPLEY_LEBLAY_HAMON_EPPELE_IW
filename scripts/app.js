@@ -1,4 +1,20 @@
 import weatherMapping from './weather-code-map.js';
+import createWeatherCard from './create-weather-card.js';
+import changeIcone from './card-image-management.js';
+
+let today = new Date();
+let months = today.getMonth() + 1;
+let day = today.getDate();
+const openBtn = document.getElementById('openBtn');
+const closeBtn = document.getElementById('closeBtn');
+const sendBtn = document.getElementById('sendBtn')
+const modal = document.getElementById('modal');
+const showLatitudeCheckbox = document.getElementById('showLatitude');
+const showLongitudeCheckbox = document.getElementById('showLongitude');
+const showRainCheckbox = document.getElementById('showRain');
+const showWindSpeedCheckbox = document.getElementById('showWindSpeed');
+const showWindDirectionCheckbox = document.getElementById('showWindDirection');
+const sendSettingsButton = document.getElementById('sendBtn');
 
 document.getElementById('zip-code-input').addEventListener('input', () => {
     const codePost = document.getElementById('zip-code-input').value;
@@ -7,9 +23,9 @@ document.getElementById('zip-code-input').addEventListener('input', () => {
         searchCity();
     }
 
-    if(codePost.length < 5 && document.querySelector('ul')){
-       document.querySelector('ul').remove();
-    }   
+    if(codePost.length && document.getElementById('resultList')){
+        document.getElementById('resultList').remove();
+    }
 });
 
 document.getElementById('zip-code-input').addEventListener('click', () => {
@@ -41,21 +57,24 @@ function searchCity() {
 
                         li.onclick = function(event){
                             const inseeCode = event.target.id;
-                        
-                            fetch('https://api.meteo-concept.com/api/forecast/daily/0?token=03a1b58ee7ed8629a6c05e0cc9cd2ed3e70a682b5e7167a577c6cd3de1b70e9b&insee=' + inseeCode)
+                            document.getElementById('insee-code').textContent = " " + inseeCode + " -";
+                            const tokenAPI = '5c0cadf135fd6cfb956038574e1c512a5a1ceaaae332055011376af57c50bb49'
+
+                            fetch('https://api.meteo-concept.com/api/forecast/daily/0?token=' + tokenAPI + '&insee=' + inseeCode)
                                 .then(response => response.json())
 
                                 .then(data => {
-                                    document.getElementById('city-location').textContent = `${data.city.name}`;
+                                    document.getElementById('city-location').textContent = `${data.city.name} -`;
                                     document.getElementById('city-temperature-max').textContent = `${data.forecast.tmax}`;
                                     document.getElementById('city-temperature-min').textContent = `${data.forecast.tmin}`;
                                     document.getElementById('city-rain-probability').textContent = `${data.forecast.probarain}`;
                                     document.getElementById('city-sun-time').textContent = `${data.forecast.sun_hours}`;
                                     resultDiv.style.visibility = 'hidden';
+                                    openBtn.style.display = 'block';
                                     
                                     let weatherCode = `${data.forecast.weather}`
+                                    changeIcone(weatherCode);
                                     document.getElementById('weather-info-text').textContent = weatherMapping[weatherCode];
-                                    weatherImage.imageSelection(weatherCode);
                                 });
                         };
                         ul.appendChild(li);
@@ -74,12 +93,40 @@ function searchCity() {
     }
 }
 
-let today = new Date();
-let months = today.getMonth() + 1;
+day = day < 10 ? '0' + day : day;
+months = months < 10 ? '0' + months : months;
 
-if(months < 10){
-    months = '0' + months;
-}
+document.getElementById('actual-date').textContent = ' (' + day + '/' + months + '/' + today.getFullYear() + ')';
 
-document.getElementById('actual-date').textContent = ' (' + today.getDate() + '/' + months + '/' + today.getFullYear() + ')';
+/* MODAL MANAGE */
 
+openBtn.addEventListener('click', () => {
+    modal.showModal();
+});
+
+closeBtn.addEventListener('click', () => {
+    modal.close();
+});
+
+sendBtn.addEventListener('click', () => {
+    modal.close();
+});
+
+/* WEATHER CREATE CARD */
+
+document.getElementById('number-of-weather-card').addEventListener('input', () =>  {
+    let numberOfCard = document.getElementById('number-of-weather-card').value;
+    document.getElementById('value-input-range').textContent = numberOfCard;
+});
+
+sendSettingsButton.addEventListener('click', function() {
+    const showLatitude = showLatitudeCheckbox.checked;
+    const showLongitude = showLongitudeCheckbox.checked;
+    const showRain = showRainCheckbox.checked;
+    const showWindSpeed = showWindSpeedCheckbox.checked;
+    const showWindDirection = showWindDirectionCheckbox.checked;
+    let numberOfCard = document.getElementById('number-of-weather-card').value;
+    let inseeCode = document.getElementById('insee-code').textContent;
+
+    createWeatherCard(numberOfCard, inseeCode, { showLatitude, showLongitude, showRain, showWindSpeed, showWindDirection });
+});
